@@ -44,22 +44,22 @@ class Post
 
 
   def save
-    conn = Post.open_connection
+   conn = Post.open_connection
 
-    if !self.id
-      sql = "INSERT INTO post (title, body) VALUES ('#{self.title}', '#{self.body}')"
-    else
-      sqp = "UPDATE post SET title='#{self.title}', body='#{self.body}' WHERE id = #{self.id}"
-    end
+   if !self.id
+     sql = "INSERT INTO post (title, body) VALUES ('#{self.title}', '#{self.body}')"
+   else
+     sql = "UPDATE post SET title='#{self.title}', body='#{self.body}' WHERE id = #{self.id}"
+   end
 
-    conn.exec(sql)
-  end
+   conn.exec(sql)
+ end
 
 
   def self.destroy id
     conn = self.open_connection
 
-    sql = "DELETE FROM post WHERE = #{id}"
+    sql = "DELETE FROM post WHERE id = #{id}"
 
     conn.exec(sql)
   end
